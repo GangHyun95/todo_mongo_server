@@ -1,6 +1,5 @@
 # information
-/config
-/config/key.js
+/config/dev.js
 
 # dependencies
 /node_modules
