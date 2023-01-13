@@ -2,10 +2,16 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 // const { Todo } = require("./model/TodoModel.js");
-
+var cors = require("cors");
 const config = require("./config/key.js");
 const app = express();
 const port = 5000;
+
+let corsOptions = {
+  origin: "*", // 출처 허용 옵션
+  credential: true, // 사용자 인증이 필요한 리소스(쿠키 등) 접근
+};
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,7 +21,7 @@ app.use("/api/post", require("./router/Post.js"));
 // User 관련 Router 연결
 app.use("/api/user", require("./router/User.js"));
 
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "./build")));
 
 app.listen(port, () => {
   mongoose
